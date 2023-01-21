@@ -1,6 +1,7 @@
 package com.nolib.core.Math.lines;
 
-import com.Math.positions.Point;
+
+import com.nolib.core.Math.positions.Point;
 
 public class Vector {
 

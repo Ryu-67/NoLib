@@ -23,20 +23,10 @@ dependencies {
   implementation 'com.google.guava:guava:29.0-jre'
 }
 
-java {
-	withSourcesJar()
-	withJavadocJar()
-}
 
-publishing {
-    publications {
-        maven(MavenPublication) {
-		from components.java
-        }
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
     }
-}
-
-wrapper {
-    gradleVersion = "7.3.3"
-    distributionType = Wrapper.DistributionType.ALL
 }
