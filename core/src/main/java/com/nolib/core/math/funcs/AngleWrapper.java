@@ -1,4 +1,4 @@
-package com.nolib.core.Math.funcs;
+package com.nolib.core.math.funcs;
 
 public class AngleWrapper {
 

@@ -1,6 +1,6 @@
-package com.nolib.core.Pathing;
+package com.nolib.core.pathing;
 
-import com.nolib.core.Math.positions.Point;
+import com.nolib.core.math.positions.Point;
 
 import java.util.ArrayList;
 

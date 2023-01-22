@@ -1,7 +1,7 @@
-package com.nolib.core.Math.geometry;
+package com.nolib.core.math.geometry;
 
 
-import com.nolib.core.Math.positions.Point;
+import com.nolib.core.math.positions.Point;
 
 public class Vector {
 

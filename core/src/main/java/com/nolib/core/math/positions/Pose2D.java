@@ -1,4 +1,4 @@
-package com.nolib.core.Math.positions;
+package com.nolib.core.math.positions;
 
 public class Pose2D {
 
