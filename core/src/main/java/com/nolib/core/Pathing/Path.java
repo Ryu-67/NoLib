@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Path {
 
-    ArrayList<Point> pointList = new ArrayList<Point>();
+    ArrayList<Point> pointList;
 
     public Path(ArrayList<Point> path) {
         this.pointList = path;

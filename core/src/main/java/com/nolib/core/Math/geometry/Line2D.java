@@ -1,4 +1,4 @@
-package com.nolib.core.Math.lines;
+package com.nolib.core.Math.geometry;
 
 import com.nolib.core.Math.positions.Point;
 

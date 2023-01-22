@@ -1,32 +1,39 @@
+buildscript {
+    ext.kotlin_version = '1.6.10'
+
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        mavenLocal()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.3'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
 plugins {
     id 'com.android.application' version '7.1.2' apply false
     id 'com.android.library' version '7.1.2' apply false
     id 'org.jetbrains.kotlin.android' version '1.6.10' apply false
+    id 'maven-publish'
 }
 
-apply plugin: 'java'
 apply plugin: 'maven-publish'
-
-group = 'com.github.Ryu-67'
-version = '1.0'
-
-sourceCompatibility = 1.8 // java 8
-targetCompatibility = 1.8
-
-repositories {
-  mavenCentral()
-    google()
-}
-
-
-dependencies {
-  implementation 'com.google.guava:guava:29.0-jre'
-}
-
 
 allprojects {
     repositories {
         google()
+        jcenter()
         mavenCentral()
     }
+}
+
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }
