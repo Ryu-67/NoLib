@@ -4,5 +4,6 @@ public enum ActionType {
         waypoint,
         wait,
         custom,
-        null_action
+        null_action,
+        async
 }

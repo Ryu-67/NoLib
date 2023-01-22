@@ -13,6 +13,8 @@ public class ActionAssembly {
         this.assemblyArray.addAll(Arrays.asList(actions));
     }
 
-
+    public Action currentAction() {
+        return assemblyArray.get(0);
+    }
 
 }
