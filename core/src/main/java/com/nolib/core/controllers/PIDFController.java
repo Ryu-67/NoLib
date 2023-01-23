@@ -1,6 +1,6 @@
 package com.nolib.core.controllers;
 
-import com.nolib.core.controllers.PIDFCoefficients;
+import com.nolib.core.math.funcs.AngleWrapper;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class PIDFController {
@@ -11,6 +11,7 @@ public class PIDFController {
 
     double prevError;
     double lastSetTarget;
+    double lastSetAngle;
 
     ElapsedTime runtime = new ElapsedTime();
 
@@ -46,6 +47,31 @@ public class PIDFController {
         //make sure to set our variables for the next loop.
         prevError = error;
         lastSetTarget = reference_point;
+
+        runtime.reset();
+
+        //return a useful output. be sure to call this func in a loop.
+        return kP * error + kI * integral + kD * derivative + kF;
+    }
+
+    public double angleOutput(double reference, double current) {
+        double error = Math.toDegrees(
+                AngleWrapper.angleWrap(
+                        Math.toRadians(reference - current))
+        );
+
+        if (lastSetAngle != reference) {
+            integral = 0;
+        }
+        //calculate the integral term
+        integral += error * runtime.seconds();
+
+        //calculate the derivative term
+        double derivative = (error - prevError) / runtime.seconds();
+
+        //make sure to set our variables for the next loop.
+        prevError = error;
+        lastSetAngle = reference;
 
         runtime.reset();
 

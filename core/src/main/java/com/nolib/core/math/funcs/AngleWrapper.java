@@ -2,7 +2,7 @@ package com.nolib.core.math.funcs;
 
 public class AngleWrapper {
 
-    public double angleWrap(double radians) {
+    public static double angleWrap(double radians) {
 
         while (radians > Math.PI) {
             radians -= 2 * Math.PI;

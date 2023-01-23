@@ -1,37 +1,53 @@
 package com.nolib.core.wrappers;
 
+import com.nolib.core.util.AxisDirection;
+import com.nolib.core.util.BNO055IMUUtil;
+import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
+
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class NoMecanum {
 
     DcMotor frontLeft, frontRight, backLeft, backRight;
+    BNO055IMU imu;
 
-    public NoMecanum (DcMotor frontLeft, DcMotor frontRight, DcMotor backLeft, DcMotor backRight) {
-        this.frontLeft = frontLeft;
-        this.frontRight = frontRight;
-        this.backLeft = backLeft;
-        this.backRight = backRight;
+    HardwareMap hardwareMap;
+    Telemetry telemetry;
+
+    public NoMecanum (HardwareMap hardwareMap, Telemetry telemetry) {
+        this.hardwareMap = hardwareMap;
+        this.telemetry = telemetry;
     }
 
-    public void fieldCentric (double forward, double strafe, double turn, double heading, double mult) {
+    public void init(String frontLeft, String frontRight, String backLeft, String backRight, String imu,
+                     boolean flReverse, boolean frReverse, boolean blReverse, boolean brReverse, AxisDirection zAxis) {
+        try {
+            this.frontLeft = hardwareMap.dcMotor.get(frontLeft);
+            this.frontRight = hardwareMap.dcMotor.get(frontRight);
+            this.backLeft = hardwareMap.dcMotor.get(backLeft);
+            this.backRight = hardwareMap.dcMotor.get(backRight);
 
-        forward = forward * -1;
+            this.frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            this.frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            this.backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            this.backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        double rotX = strafe * Math.cos(heading) - forward * Math.sin(heading);
-        double rotY = strafe * Math.sin(heading) + forward * Math.cos(heading);
+            this.imu = hardwareMap.get(BNO055IMU.class, imu);
+            BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+            parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
+            this.imu.initialize(parameters);
+            BNO055IMUUtil.remapZAxis(this.imu, zAxis );
 
-        double ratioFix = Math.max(Math.abs(forward) + Math.abs(strafe) + Math.abs(turn), 1);
-        double frontLeftPower = (rotY + rotX + turn) / ratioFix;
-        double backLeftPower = (rotY - rotX + turn) / ratioFix;
-        double frontRightPower = (rotY - rotX - turn) / ratioFix;
-        double backRightPower = (rotY + rotX - turn) / ratioFix;
+        } catch (Exception e) {
+            telemetry.addLine("Drive Intialization Failed");
+            telemetry.update();
+        }
 
-        frontLeft.setPower(frontLeftPower*mult);
-        backLeft.setPower(backLeftPower*mult);
-        frontRight.setPower(frontRightPower*mult);
-        backRight.setPower(backRightPower*mult);
+
+
     }
-
 
 
 }
