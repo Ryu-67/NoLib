@@ -1,4 +1,4 @@
-package com.nolib.core.pathing.actions.base;
+package com.nolib.core.actions.base;
 
 @SuppressWarnings("PMD.AbstractClassWithoutAbstractMethod")
 public abstract class Action implements ActionBase {

@@ -1,7 +1,7 @@
-package com.nolib.core.pathing.actions.std;
+package com.nolib.core.actions.std;
 
 import com.nolib.core.math.positions.Point;
-import com.nolib.core.pathing.actions.base.Action;
+import com.nolib.core.actions.base.Action;
 
 public class Waypoint extends Action {
 

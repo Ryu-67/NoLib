@@ -1,6 +1,6 @@
-package com.nolib.core.pathing.actions.std;
+package com.nolib.core.actions.std;
 
-import com.nolib.core.pathing.actions.base.Action;
+import com.nolib.core.actions.base.Action;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class Wait extends Action {
