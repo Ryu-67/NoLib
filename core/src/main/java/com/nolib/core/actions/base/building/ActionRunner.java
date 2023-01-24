@@ -5,13 +5,13 @@ import com.nolib.core.actions.base.ActionType;
 
 import java.util.ArrayList;
 
-public final class ActionExecutor {
+public final class ActionRunner {
 
     ArrayList<Action> assemblyArray = new ArrayList<>();
 
-    public static ActionExecutor instance;
+    public static ActionRunner instance;
 
-    public static ActionExecutor getInstance() {
+    public static ActionRunner getInstance() {
         return instance;
     }
 
@@ -22,6 +22,8 @@ public final class ActionExecutor {
             if (action.getType() == ActionType.null_action) {
                 System.out.println("Exception!");
                 return;
+            } else {
+                assemblyArray.add(action);
             }
         }
     }
