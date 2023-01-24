@@ -8,3 +8,5 @@ pluginManagement {
 }
 rootProject.name = "nolib"
 include ':core'
+include ':example'
+include ':nolibexamples'
