@@ -22,6 +22,5 @@ public class PathFollower {
         follower.setTarget(target);
         HashMap<String, Double> powers = follower.update(pose);
 
-        
     }
 }
